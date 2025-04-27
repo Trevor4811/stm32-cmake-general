@@ -1,0 +1,25 @@
+BasedOnStyle: LLVM
+IndentWidth: 4
+TabWidth: 4
+UseTab: Never
+BreakBeforeBraces: Allman
+AllowShortFunctionsOnASingleLine: Inline
+PointerAlignment: Right
+AlignConsecutiveAssignments: true
+AlignConsecutiveDeclarations: true
+SortIncludes: true
+IncludeBlocks: Preserve
+SpacesInParentheses: false
+SpaceAfterCStyleCast: true
+SpaceAfterTemplateKeyword: true
+Cpp11BracedListStyle: true
+ReflowComments: true
+IndentPPDirectives: BeforeHash
+BreakBeforeBraces: Custom
+BraceWrapping:
+  AfterFunction: false  # Place brace on the same line as function declaration
+  AfterControlStatement: false
+  AfterStruct: false
+  AfterClass: false
+  AfterEnum: false
+  AfterNamespace: false
