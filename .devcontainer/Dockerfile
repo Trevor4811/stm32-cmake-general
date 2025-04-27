@@ -66,6 +66,14 @@ RUN apt-get update && \
     python3 \
     python3-pip
 
+# Install general tools
+RUN apt-get update && apt-get install -y \
+    openocd \
+    clang-format \
+    && rm -rf /var/lib/apt/lists/*
+
+# RUN apt-get update && apt-get upgrade
+
 # Set default working directory
 WORKDIR /workspace
 
