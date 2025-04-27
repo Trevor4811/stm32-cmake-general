@@ -2,11 +2,11 @@ cmake_minimum_required(VERSION 3.16)
 set(CMAKE_TOOLCHAIN_FILE ${CMAKE_CURRENT_SOURCE_DIR}/../../cmake/stm32_gcc.cmake)
 
 # Configure here which STM32 target(s) to build
-option(BLINKY_F4_EXAMPLE "Compile F4 example" ON)
+option(BLINKY_F4_EXAMPLE "Compile F4 example" OFF)
 option(BLINKY_F1_EXAMPLE "Compile F1 example" OFF)
-option(BLINKY_L0_EXAMPLE "Compile L0 example" OFF)
+option(BLINKY_L0_EXAMPLE "Compile L0 example" ON)
 
-option(USE_CPP_FILE "Use the .cpp example file instead of the .c one" OFF)
+option(USE_CPP_FILE "Use the .cpp example file instead of the .c one" ON)
 
 if(USE_CPP_FILE)
     project(stm32-blinky C CXX ASM)
@@ -60,6 +60,8 @@ if(BLINKY_F4_EXAMPLE)
         STM32::NoSys
     )
     stm32_print_size_of_target(stm32-blinky-f4)
+    stm32_generate_binary_file(stm32-blinky-f4)
+
 endif()
 
 # STM32VL-Discovery
@@ -73,6 +75,8 @@ if(BLINKY_F1_EXAMPLE)
         STM32::NoSys
     )
     stm32_print_size_of_target(stm32-blinky-f1)
+    stm32_generate_binary_file(stm32-blinky-f1)
+
 endif()
 
 # STM32L0538-Discovery
@@ -86,4 +90,6 @@ if(BLINKY_L0_EXAMPLE)
         STM32::NoSys
     )
     stm32_print_size_of_target(stm32-blinky-l0)
+    stm32_generate_binary_file(stm32-blinky-l0)
+
 endif()
