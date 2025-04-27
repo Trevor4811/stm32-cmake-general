@@ -4,6 +4,7 @@ set(CMAKE_TOOLCHAIN_FILE ${CMAKE_CURRENT_SOURCE_DIR}/../../cmake/stm32_gcc.cmake
 # Configure here which STM32 target(s) to build
 option(BLINKY_F4_EXAMPLE "Compile F4 example" OFF)
 option(BLINKY_F1_EXAMPLE "Compile F1 example" OFF)
+option(BLINKY_L4_EXAMPLE "Compile L4 example" ON)
 option(BLINKY_L0_EXAMPLE "Compile L0 example" ON)
 
 option(USE_CPP_FILE "Use the .cpp example file instead of the .c one" ON)
@@ -32,6 +33,11 @@ if(BLINKY_F1_EXAMPLE)
     list(APPEND HAL_COMP_LIST STM32F1)
 endif()
 
+if(BLINKY_L4_EXAMPLE)
+    list(APPEND CMSIS_COMP_LIST STM32L4)
+    list(APPEND HAL_COMP_LIST STM32L4)
+endif()
+
 if(BLINKY_L0_EXAMPLE)
     list(APPEND CMSIS_COMP_LIST STM32L0)
     list(APPEND HAL_COMP_LIST STM32L0)
@@ -41,7 +47,7 @@ find_package(CMSIS COMPONENTS "${CMSIS_COMP_LIST}" REQUIRED)
 find_package(HAL COMPONENTS "${HAL_COMP_LIST}" REQUIRED)
 
 # Find all device specific drivers:
-#find_package(HAL COMPONENTS STM32L0 STM32F1 STM32F4 REQUIRED)
+#find_package(HAL COMPONENTS STM32L4 STM32L0 STM32F1 STM32F4 REQUIRED)
 # Find drivers for all families:
 #find_package(HAL COMPONENTS RCC GPIO CORTEX REQUIRED)
 # Find LL driver:
@@ -76,6 +82,21 @@ if(BLINKY_F1_EXAMPLE)
     )
     stm32_print_size_of_target(stm32-blinky-f1)
     stm32_generate_binary_file(stm32-blinky-f1)
+
+endif()
+
+# STM32L4538-Discovery
+if(BLINKY_L4_EXAMPLE)
+    add_executable(stm32-blinky-l4 ${MAIN_SOURCE_FILE} stm32l4xx_hal_conf.h)
+    target_link_libraries(stm32-blinky-l4
+        HAL::STM32::L4::RCC
+        HAL::STM32::L4::GPIO
+        HAL::STM32::L4::CORTEX
+        CMSIS::STM32::L476RG
+        STM32::NoSys
+    )
+    stm32_print_size_of_target(stm32-blinky-l4)
+    stm32_generate_binary_file(stm32-blinky-l4)
 
 endif()
 
