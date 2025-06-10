@@ -85,7 +85,7 @@ if(BLINKY_F1_EXAMPLE)
 
 endif()
 
-# STM32L4538-Discovery
+# STM32L476RG
 if(BLINKY_L4_EXAMPLE)
     add_executable(stm32-blinky-l4 ${MAIN_SOURCE_FILE} stm32l4xx_hal_conf.h)
     target_link_libraries(stm32-blinky-l4

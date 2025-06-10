@@ -11,7 +11,8 @@
 				"marus25.cortex-debug",  
 				"ms-vscode.cmake-tools", 
 				"ms-vscode.cpptools" ,    
-				"xaver.clang-format"
+				"xaver.clang-format",
+				"waderyan.gitblame"
 			]
 		}
 	}
